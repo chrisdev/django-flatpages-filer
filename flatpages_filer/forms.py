@@ -1,25 +1,16 @@
-from datetime import datetime
-
 from django import forms
-from django.contrib import admin
-from django.contrib.flatpages.admin import FlatPageAdmin as StockFlatPageAdmin
 from django.contrib.flatpages.admin import FlatpageForm
-from django.contrib.flatpages.models import FlatPage
 from django.utils.translation import ugettext_lazy as _
-from django.utils.functional import curry
-
-from .models import FlatPageImage, FlatPageMeta, FlatPageAttachment, Revision
 from .settings import FPX_TEMPLATE_CHOICES
 from .settings import PARSER
+from django.utils.functional import curry
 from .utils import load_path_attr
-
-# Use markitup if available
+from .models import Revision
+from datetime import datetime
 try:
     from markitup.widgets import AdminMarkItUpWidget as content_widget
 except ImportError:
     content_widget = forms.Textarea
-
-# Thumbnails
 
 
 class CustomFlatPageForm(FlatpageForm):
@@ -64,53 +55,3 @@ class CustomFlatPageForm(FlatpageForm):
         r.save()
 
         return fp
-
-
-class FlatPageMetaAdmin(admin.ModelAdmin):
-    list_display = ('flatpage', 'created',)
-    list_filter = ('flatpage',)
-    ordering = ('flatpage',)
-    search_fields = ('flatpage',)
-
-
-admin.site.register(FlatPageMeta, FlatPageMetaAdmin)
-
-
-class MetaInline(admin.StackedInline):
-    model = FlatPageMeta
-
-
-class ImageInline(admin.TabularInline):
-    model = FlatPageImage
-
-class AttachmentInline(admin.StackedInline):
-    model = FlatPageAttachment
-
-# if thumbs is not None:
-#     # Add the mixin to the MRO
-#     class ImageInline(thumbs.AdminImageMixin, ImageInline):
-#         pass
-
-
-class FlatPageAdmin(StockFlatPageAdmin):
-    fieldsets = (
-        (None, {'fields': ('url', 'title', 'content_md', 'template_name',)}),
-        (_('Advanced options'), {'classes': ('expand',),
-                                 'fields': ('enable_comments',
-                                 'registration_required', 'sites')}),
-    )
-    form = CustomFlatPageForm
-    inlines = [MetaInline,
-               ImageInline,
-               AttachmentInline,
-
-               ]
-
-    def save_form(self, request, form, change):
-        # form.save doesn't take a commit kwarg
-        return form.save()
-
-admin.site.unregister(FlatPage)
-admin.site.register(FlatPage, FlatPageAdmin)
-admin.site.register(FlatPageImage)
-admin.site.register(Revision)
