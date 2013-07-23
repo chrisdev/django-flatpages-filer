@@ -15,11 +15,11 @@ We provide support for Markdown but you can write your own parser to support rst
 
 - Content **revisions**.
 
-Migrating you data to flapages_x should not be difficult since the
+Migrating you data to flapages_filer should not be difficult since the
 data which currently in the contrib.Flatpage model (content, titles) is not affected.
 Your templates will still utilize the  *{{flatpage.content}}* and *{{flatpage.body}}*
 context variables.
-Once you install flatpages_x, the Markdown
+Once you install flatpages_filer, the Markdown
 is actually stored in the related Revisions model.
 When you save a flatpage, this will be rendered as html via the markdown
 parser and saved to the Flatpage.content field
@@ -38,17 +38,17 @@ Create a virtual environment for your project and activate it::
     $ source mysite-env/bin/activate
     (mysite-env)$
 
-Next install ``flatpages_x`` ::
+Next install ``flatpages_filer`` ::
 
-    (mysite-env)$ pip install django-flatpages-x
+    (mysite-env)$ pip install django-flatpages-filer
 
-Add ``flatpages_x`` to your INSTALLED_APPS setting.
+Add ``flatpages_filer`` to your INSTALLED_APPS setting.
 
 Inside your project run::
 
     (mysite-env)$ python manage.py syncdb
 
-Django-flatpages-x comes with support for `Markdown <http://daringfireball.net/projects/markdown/syntax/>`_
+Django-flatpages-filer comes with support for `Markdown <http://daringfireball.net/projects/markdown/syntax/>`_
 You can also associate and display images with your flatpages.
 To include your images in your content using reference-style image syntax looks like this ::
 
@@ -96,12 +96,12 @@ If you want view admin image thumbnails install sorl-thumbnail::
 
 Markup Support
 ---------------
-Django-flatpages-x come with a simple parser that supports Markdown. However,
-you can supply your own parser by setting the value for *FLATPAGES_X_PARSER*
+Django-flatpages-filer come with a simple parser that supports Markdown. However,
+you can supply your own parser by setting the value for *flatpages_filer_PARSER*
 to settings.py. So if you want to use a parser ``myparser_parser`` simply add
 the following to you settings ::
 
-    FLATPAGES_X_PARSER= ["flatpages_x.markdown_parser.parse", {}]
+    flatpages_filer_PARSER= ["flatpages_filer.markdown_parser.parse", {}]
 
 .. end-here
 
@@ -110,5 +110,5 @@ Documentation
 
 See the `full documentation`_ for more details.
 
-.. _full documentation: http://django-flatpages-x.readthedocs.org/
+.. _full documentation: http://django-flatpages-filer.readthedocs.org/
 

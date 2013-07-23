@@ -2,11 +2,11 @@ from django.conf import settings
 
 PARSER = getattr(
                 settings, 'FLATPAGES_X_PARSER', [
-                "flatpages_x.markdown_parser.parse",{}
+                "flatpages_filer.markdown_parser.parse",{}
                 ]
     )
 DEFAULT_TEMPLATE_CHOICES = [
     ('flatpages/default.html', 'Text Only', ),
 ]
 FPX_TEMPLATE_CHOICES = getattr(
-    settings, 'FLATPAGES_X_TEMPLATE_CHOICES', DEFAULT_TEMPLATE_CHOICES)
+    settings, 'FLATPAGES_FILER_TEMPLATE_CHOICES', DEFAULT_TEMPLATE_CHOICES)
