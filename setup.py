@@ -8,12 +8,12 @@ def read(fname):
     return codecs.open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 
-PACKAGE = "flatpages_x"
-NAME = "django-flatpages-x"
+PACKAGE = "flatpages_filer"
+NAME = "django-flatpages-filer"
 DESCRIPTION = "Some Basic extensions for django-contrib-flatpages"
-AUTHOR = "Chris Clarke"
+AUTHOR = "Chris Clarke", "Lendl Smith"
 AUTHOR_EMAIL = "cclarke@chrisdev.com"
-URL = "http://github.com/chrisdev/django-flatpages-x"
+URL = "http://github.com/chrisdev/django-flatpages-filer"
 VERSION = __import__(PACKAGE).__version__
 
 
@@ -40,7 +40,7 @@ setup(
     zip_safe=False,
     install_requires=[
         'Django>=1.3,<1.5',
-        'django-filer>=0.9.3'
+        'django-filer>=0.9.4'
 
     ],
 )
