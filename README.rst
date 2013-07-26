@@ -94,6 +94,7 @@ If you want view admin image thumbnails install sorl-thumbnail::
 
     python manage.py syncdb
 
+
 Markup Support
 ---------------
 Django-flatpages-filer come with a simple parser that supports Markdown. However,
@@ -104,6 +105,19 @@ the following to you settings ::
     flatpages_filer_PARSER= ["flatpages_filer.markdown_parser.parse", {}]
 
 .. end-here
+
+
+Migrating From Flatpages-x
+---------------------------
+Before installing to flatpage_filer dump the data from to revision.json 
+
+python manage.py dumpdata flatpages_x.Revision
+
+Then replace the name in model from flatpages_x.revision to flatpages_filer.revision
+
+python manage.py loaddata ~/usr/folder/revision.json
+
+
 
 Documentation
 --------------
