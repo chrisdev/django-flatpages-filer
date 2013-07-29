@@ -39,8 +39,11 @@ setup(
     ],
     zip_safe=False,
     install_requires=[
-        'Django>=1.3,<1.5',
-        'django-filer>=0.9.4'
-
+        'Django>=1.5',
+        'django-filer>=0.9.5'
     ],
+    tests_require=["Django>=1.5",
+                   "django-filer>=0.9.5",
+                   ],
+    test_suite="runtests.tests"
 )

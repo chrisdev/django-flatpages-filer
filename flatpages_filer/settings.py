@@ -1,7 +1,7 @@
 from django.conf import settings
 
 PARSER = getattr(
-                settings, 'FLATPAGES_X_PARSER', [
+                settings, 'FLATPAGES_FIlER_PARSER', [
                 "flatpages_filer.markdown_parser.parse",{}
                 ]
     )

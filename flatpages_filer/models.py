@@ -32,9 +32,7 @@ class FlatPageImage(models.Model):
 
     def __unicode__(self):
 
-        return "![%s][%s]" % (self.image.label,
-            self.image.original_filename
-        )
+        return "![%s][%s]" % (self.image.pk, self.image.label)
 
     class Meta:
         verbose_name = "Image"
@@ -43,17 +41,14 @@ class FlatPageImage(models.Model):
 class FlatPageAttachment(models.Model):
 
     flatpage = models.ForeignKey(FlatPage,
-        related_name="attachments",
-        blank=True, null=True
-    )
+                                 related_name="attachments",
+                                 blank=True, null=True)
 
     attachment = FilerFileField(null=True, blank=True)
 
     def __unicode__(self):
 
-        return "[%s] [%s]" % (self.attachment.label,
-            self.attachment.original_filename
-        )
+        return "[%s] [%s]" % (self.attachment.pk, self.label)
 
     class Meta:
         verbose_name = "Attachment"
