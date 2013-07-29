@@ -1,28 +1,46 @@
-===============================
-Django Flatpage Extensions
-===============================
+======================
+Django Flatpage Filer
+======================
 
-An extension to django.contrib.flatpages to provide integration with django-filer
+An extension to ``django.contrib.flatpages`` to provide easy integration
+with the  `Django filer`_ 
 
-- Better support for **markdown** and other similar markup formats.
-We provide support for Markdown but you can write your own parser to support rst or creole.
+    "A file management application for django that makes handling of files 
+    and images a breeze".
 
-- Optional support for the excellent **markItUp** jquery editor. This requires the installation ``django-markitup``.
+``django-flapages-filer`` aims to provide a seamless experience to users of the
+standard flatpages app. It enhances the standard flatpages Admin 
+with inline forms that allow you to include references to you filer images 
+and files (attachments). It also allows you to easily maintain content 
+using a markup format such as markdown.
 
-- Easy inclusion of images in flatpages. Viewing Admin **image thumbnails** requires the installation of ``sorl-thumbnail``.
+However, the data which are currently in the ``contrib.Flatpage``
+model (content, titles)
+will not be affected by installing or removing this app.
+Your templates should still utilize the  ``{{ flatpage.content }}``
+and ``{{ flatpage.title }}``
+context variables.  
 
-- The inclusion of HTML **metatags** such as keywords and descriptions in flatpages.
+Also, content edits are actually stored in the related  model ``flatpages_filer.models.Revisions`` 
+in a markup format such as markdown. The Revision model which also keeps track of
+all content changes. 
+The enhanced ``flatpages Admin``  ensures that 
+When you save a ``flatpage``,  markup content  will be converted to
+to html via the specified parser. This saved to the ``Flatpage.content`` field.
 
-- Content **revisions**.
+Additionally, ``django-flatpages-filer``:
 
-Migrating you data to flapages_filer should not be difficult since the
-data which currently in the contrib.Flatpage model (content, titles) is not affected.
-Your templates will still utilize the  *{{flatpage.content}}* and *{{flatpage.body}}*
-context variables.
-Once you install flatpages_filer, the Markdown
-is actually stored in the related Revisions model.
-When you save a flatpage, this will be rendered as html via the markdown
-parser and saved to the Flatpage.content field
+- Comes with a default markdown parser which allows you to specify
+  various extensions.  But you can easily write your own parser 
+  to support rst or creole.
+
+- Provides optional support for the excellent **markItUp**  widget. 
+  This requires the installation ``django-markitup``.
+
+- Provides templatetags to support *HTML metatags* such as keywords and
+  descriptions in flatpages.
+
+.. _django filer: https://pypi.python.org/pypi/django-filer/
 
 Contributors
 ============
@@ -46,17 +64,26 @@ Add ``flatpages_filer`` to your INSTALLED_APPS setting.
 
 Inside your project run::
 
-    (mysite-env)$ python manage.py syncdb
+    (mysite-env)$ python manage.py syncdb 
 
-Django-flatpages-filer comes with support for `Markdown <http://daringfireball.net/projects/markdown/syntax/>`_
-You can also associate and display images with your flatpages.
-To include your images in your content using reference-style image syntax looks like this ::
+Django-flatpages-filer comes with support for
+`Markdown <http://daringfireball.net/projects/markdown/syntax/>`_
 
-     ![Atl text][image.pk]
+To include filer images in your content use a standard markdown image
+reference ::
 
-Where [image.pk] is the primary key of image the that you want to include.
-The primary key of the image
-should is visible in the flatpages Admin form which will now contains an inline image form
+     ![Atl text][filer_image.pk]
+
+For a link to a file ::
+
+     [Atl text][filer_file.pk]
+    
+Where ``pk`` refers to the primary key of the filer file or image.
+To facilitate easy inclusion of the images and file attachments in your markdown
+content the ``Flatpages Admin`` now contains Inline image and file attachment
+forms which allow you to to associate the filer images or files with 
+the ``flatpage`` once you save the ``flatpage`` the correct markdown 
+image/file reference should is visible in Inline image form.
 
 markItUp support
 ------------------
@@ -95,14 +122,27 @@ If you want view admin image thumbnails install sorl-thumbnail::
     python manage.py syncdb
 
 
-Markup Support
----------------
-Django-flatpages-filer come with a simple parser that supports Markdown. However,
-you can supply your own parser by setting the value for *flatpages_filer_PARSER*
-to settings.py. So if you want to use a parser ``myparser_parser`` simply add
-the following to you settings ::
+Parser
+-------
+Django-flatpages-filer come with a simple parser that supports Markdown. To 
+specify our extensions ::
 
-    flatpages_filer_PARSER= ["flatpages_filer.markdown_parser.parse", {}]
+    FLATPAGES_FILER_PARSER= ["flatpages_filer.markdown_parser.parse",
+                            {'extensions': ['codehilite','abbr']}]
+
+
+You can supply your own parser by setting the value for 
+``FLATPAGES_FILER_PARSER`` to point to your parser ::
+
+    FLATPAGES_FILER_PARSER= ["flatpages_filer.creole_parser.parse",
+                            {'emitter': FilerEmmiter}]
+
+Note we expect that your parser would define a ``parse`` method with the 
+the following arguments::
+    
+    parse(text, [extensions, emitters etc])
+
+
 
 .. end-here
 
