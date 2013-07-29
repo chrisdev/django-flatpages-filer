@@ -1,0 +1,4 @@
+[run]
+source = flatpages_filer
+omit = flatpages_filer/tests/*
+branch = 1

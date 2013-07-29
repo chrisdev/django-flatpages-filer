@@ -3,7 +3,6 @@ from django.contrib.flatpages.admin import FlatpageForm
 from django.utils.translation import ugettext_lazy as _
 from .settings import FPX_TEMPLATE_CHOICES
 from .settings import PARSER
-from django.utils.functional import curry
 from .utils import load_path_attr
 from .models import Revision
 from datetime import datetime
@@ -38,10 +37,14 @@ class CustomFlatPageForm(FlatpageForm):
 
     def save(self):
         fp = super(CustomFlatPageForm, self).save(commit=False)
+        if PARSER is not None:
+            parse_method = load_path_attr(PARSER[0])
+            if PARSER[1]:
+                fp.content = parse_method(self.cleaned_data["content_md"],
+                                          **PARSER[1])
+            else:
+                fp.content = parse_method(self.cleaned_data["content_md"])
 
-        if PARSER and PARSER[0] is not None:
-            render_func = curry(load_path_attr(PARSER[0], **PARSER[1]))
-            fp.content = render_func(self.cleaned_data["content_md"])
         else:
             fp.content = self.cleaned_data["content_md"]
 

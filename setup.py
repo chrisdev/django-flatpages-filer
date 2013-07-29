@@ -44,6 +44,9 @@ setup(
     ],
     tests_require=["Django>=1.5",
                    "django-filer>=0.9.5",
+                   "easy-thumbnails==1.3",
+                   "Markdown==2.3.1",
+                   "Pillow==2.1.0",
                    ],
     test_suite="runtests.tests"
 )

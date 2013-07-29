@@ -16,7 +16,7 @@ if not settings.configured:
             'easy_thumbnails',
             'flatpages_filer',
             'flatpages_filer.tests',
-            'markitup',
+            #'markitup',
         ),
         DATABASES={
             "default": {
@@ -30,7 +30,8 @@ if not settings.configured:
         FLATPAGES_FIlER_PARSER=[
             'flatpages_filer.tests.custom_markdown_parser.parse',
             {'extensions': ['codehilite', 'abbr']}
-        ]
+        ],
+        STATIC_URL = "/static/"
     )
 
     settings.configure(**settings_dict)
