@@ -48,5 +48,5 @@ setup(
                    "Markdown==2.3.1",
                    "Pillow==2.1.0",
                    ],
-    test_suite="runtests.tests"
+    test_suite="runtests.runtests"
 )

@@ -4,3 +4,6 @@ recursive-include docs *
 recursive-include flatpages_filer/templates *
 recursive-include flatpages_filer/fixtures *
 exclude *.wpr *.wpu .DS_Store 
+# added by check_manifest.py
+include *.py
+include *.sh
