@@ -46,3 +46,4 @@ class TestCustomFlatPageForm(TestCase):
         self.assertIn(self.image_name, html_out.split('\n')[-1])
         self.assertIn('</a>', html_out.split('\n')[-1])
         self.assertIn('href=', html_out.split('\n')[-1])
+
