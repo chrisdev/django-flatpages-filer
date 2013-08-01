@@ -27,10 +27,6 @@ if not settings.configured:
                 "HOST": "",
                 "PORT": "",
             }},
-        FLATPAGES_FIlER_PARSER=[
-            'flatpages_filer.tests.custom_markdown_parser.parse',
-            {'extensions': ['codehilite', 'abbr']}
-        ],
         STATIC_URL = "/static/"
     )
 

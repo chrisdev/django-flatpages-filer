@@ -39,10 +39,10 @@ setup(
     ],
     zip_safe=False,
     install_requires=[
-        'Django>=1.5',
+        'Django>=1.4.5',
         'django-filer>=0.9.5'
     ],
-    tests_require=["Django>=1.5",
+    tests_require=["Django>=1.4.5",
                    "django-filer>=0.9.5",
                    "easy-thumbnails==1.3",
                    "Markdown==2.3.1",

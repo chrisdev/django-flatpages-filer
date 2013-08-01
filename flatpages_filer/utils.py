@@ -1,9 +1,19 @@
 from django.core.exceptions import ImproperlyConfigured
-
+from .settings import DEFAULT_PARSER, DEFAULT_TEMPLATE_CHOICES
+from django.conf import settings
 try:
     from django.utils.importlib import import_module
 except ImportError:
     from importlib import import_module
+
+
+def get_template_choices():
+    return getattr(settings, 'FLATPAGES_FILER_TEMPLATE_CHOICES',
+                   DEFAULT_TEMPLATE_CHOICES)
+
+
+def get_parser():
+    return getattr(settings, 'FLATPAGES_FILER_PARSER', DEFAULT_PARSER)
 
 
 def load_path_attr(path):

@@ -1,8 +1,7 @@
 from django import forms
 from django.contrib.flatpages.admin import FlatpageForm
 from django.utils.translation import ugettext_lazy as _
-from .settings import FPX_TEMPLATE_CHOICES
-from .settings import PARSER
+from .utils import get_parser, get_template_choices
 from .utils import load_path_attr
 from .models import Revision
 from datetime import datetime
@@ -14,7 +13,7 @@ except ImportError:
 
 class CustomFlatPageForm(FlatpageForm):
     template_name = forms.ChoiceField(
-        choices=FPX_TEMPLATE_CHOICES, required=False,
+        choices=get_template_choices(), required=False,
         label='Template',
         help_text=_("Sepcify a template for displaying your content")
     )
@@ -36,6 +35,7 @@ class CustomFlatPageForm(FlatpageForm):
             self.fields["content_md"].initial = latest_revision.content_source
 
     def save(self):
+        PARSER = get_parser()
         fp = super(CustomFlatPageForm, self).save(commit=False)
         if PARSER is not None:
             parse_method = load_path_attr(PARSER[0])
