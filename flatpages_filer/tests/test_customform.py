@@ -32,8 +32,8 @@ class TestCustomFlatPageForm(TestCase):
         text = '[ABBR](/foo) and _ABBR_\n\n' + \
             '*[ABBR]: Abreviation\n' + \
             '\t# A Code Comment' + \
-            '\n![This is is an image][{}]'.format(self.filer_image.pk)
-        text += '\n\n[This is a link][{}]'.format(self.filer_image.pk)
+            '\n![This is is an image][{0}]'.format(self.filer_image.pk)
+        text += '\n\n[This is a link][{0}]'.format(self.filer_image.pk)
 
         f = CustomFlatPageForm(dict(content_md=text, **self.form_data))
         fp = f.save()

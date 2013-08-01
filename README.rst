@@ -2,8 +2,8 @@
 Django Flatpage Filer
 ======================
 
-An extension to ``django.contrib.flatpages`` to provide easy integration
-with the  `Django filer`_ 
+An extension to provide easy integration between ``django.contrib.flatpages`` 
+and  `Django-filer`_ 
 
     "A file management application for django that makes handling of files 
     and images a breeze".
@@ -14,25 +14,29 @@ with inline forms that allow you to include references to you filer images
 and files (attachments). It also allows you to easily maintain content 
 using a markup format such as markdown.
 
-However, the data which are currently in the ``contrib.Flatpage``
-model (content, titles)
-will not be affected by installing or removing this app.
-Your templates should still utilize the  ``{{ flatpage.content }}``
-and ``{{ flatpage.title }}``
+It should be noted that in the ``contrib.Flatpage``
+model (content, titles) are not be affected by installing or removing this app.
+Additionally, your templates do not have to be changed as they will
+still utilize the  ``{{ flatpage.content }}`` and ``{{ flatpage.title }}``
 context variables.  
 
-Also, content edits are actually stored in the related  model ``flatpages_filer.models.Revisions`` 
-in a markup format such as markdown. The Revision model which also keeps track of
-all content changes. 
-The enhanced ``flatpages Admin``  ensures that 
-When you save a ``flatpage``,  markup content  will be converted to
-to html via the specified parser. This saved to the ``Flatpage.content`` field.
+Once it is installed your content will be actually stored in a
+related  model ``flatpages_filer.models.Revisions`` usually in in a markup 
+format such as markdown. This Revision model which also keeps track of
+all content changes making it easy to revert to an earlier vision.
+Our modified ``Admin ChangeForm``  ensures you can view the latest 
+version of your content in the appropriate markup format and when 
+you save a ``flatpage`` this markup content  will be rendered to
+to html via a  specified parser. 
 
 Additionally, ``django-flatpages-filer``:
 
-- Comes with a default markdown parser which allows you to specify
-  various extensions.  But you can easily write your own parser 
-  to support rst or creole.
+- Comes with a default markdown parser which which supports the
+  ``codehilite`` and ``extras`` extensions but you can specify 
+  your own list of extensions in your Django settings
+
+- You can easily write your own parser to support to support formats such as
+  rst or creole.
 
 - Provides optional support for the excellent **markItUp**  widget. 
   This requires the installation ``django-markitup``.
@@ -40,13 +44,12 @@ Additionally, ``django-flatpages-filer``:
 - Provides templatetags to support *HTML metatags* such as keywords and
   descriptions in flatpages.
 
-.. _django filer: https://pypi.python.org/pypi/django-filer/
+.. _Django-filer: https://pypi.python.org/pypi/django-filer/
 
 Contributors
 ============
 * `Christopher Clarke <https://github.com/chrisdev>`_
 * `Lendl R Smith <https://github.com/ilendl2>`_
-* `Mikhail Andreev <https://github.com/adw0rd>`_
 
 Quickstart
 ===========
@@ -108,27 +111,14 @@ You need a few configuration steps
 in your root URLconf.
 
 
-Admin thumbnails
-----------------
-If you want view admin image thumbnails install sorl-thumbnail::
-
-    (mysite-env)$ pip install sorl-thumbnail
-
-1. Add ``sorl.thumbnail`` to your ``settings.INSTALLED_APPS``.
-2. Configure your ``settings``
-3. If you are using the cached database key value store you need to sync the
-   database::
-
-    python manage.py syncdb
-
-
 Parser
 -------
-Django-flatpages-filer come with a simple parser that supports Markdown. To 
-specify our extensions ::
+Django-flatpages-filer come with a  parser that supports Markdown and
+supports  ``codehilite`` and ``extras``. You can 
+specify more extensions by adding the following to you Django settings ::
 
     FLATPAGES_FILER_PARSER= ["flatpages_filer.markdown_parser.parse",
-                            {'extensions': ['codehilite','abbr']}]
+                            {'extensions': ['codehilite','extras', 'abbr']}]
 
 
 You can supply your own parser by setting the value for 

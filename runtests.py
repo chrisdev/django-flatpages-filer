@@ -20,12 +20,7 @@ if not settings.configured:
         ),
         DATABASES={
             "default": {
-                "ENGINE": "django.db.backends.sqlite3",
-                "NAME": ":memory:",
-                "USER": "",
-                "PASSWORD": "",
-                "HOST": "",
-                "PORT": "",
+                "ENGINE": "django.db.backends.sqlite3"
             }},
         STATIC_URL = "/static/"
     )

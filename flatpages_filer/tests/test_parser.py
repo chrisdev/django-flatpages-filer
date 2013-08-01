@@ -48,9 +48,9 @@ class TestParser(TestCase):
 - this is a list item
 - this is a second list item
 
-![This is my alt text][{}]
+![This is my alt text][{0}]
 
-[This is my alt text][{}]
+[This is my alt text][{1}]
         """
         html_out = parse(md_content.format(img_id, img_id))
         self.assertEqual(html_out.split('\n')[0], '<h2>This Is the title</h2>')
@@ -70,8 +70,8 @@ class TestParser(TestCase):
         text = '[ABBR](/foo) and _ABBR_\n\n' + \
                '*[ABBR]: Abreviation\n' + \
                '\t# A Code Comment' + \
-               '\n![This is is an image][{}]'.format(self.filer_image.pk)
-        text += '\n\n[This is a link][{}]'.format(
+               '\n![This is is an image][{0}]'.format(self.filer_image.pk)
+        text += '\n\n[This is a link][{0}]'.format(
             self.filer_image.pk)
         parser_method = load_path_attr(PARSER[0])
         html_out = parser_method(text, **PARSER[1])
@@ -94,8 +94,8 @@ class TestParser(TestCase):
         PARSER = settings.FLATPAGES_FILER_PARSER
 
         text = '[TOC]\n\n# Header 1\n\n## Header 2' + \
-               '\n![This is is an image][{}]'.format(self.filer_image.pk)
-        text += '\n\n[This is a link][{}]'.format(
+               '\n![This is is an image][{0}]'.format(self.filer_image.pk)
+        text += '\n\n[This is a link][{0}]'.format(
             self.filer_image.pk)
         parser_method = load_path_attr(PARSER[0])
         html_out = parser_method(text, **PARSER[1])
