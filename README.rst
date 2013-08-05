@@ -13,23 +13,22 @@ and  `Django-filer`_
     "A file management application for django that makes handling of files 
     and images a breeze".
 
-``django-flapages-filer`` aims to provide a seamless experience to users of the
+Thw ``django-flapages-filer`` app aims to provide a seamless experience 
+to users of the
 standard flatpages app. It enhances the standard flatpages Admin 
 with inline forms that allow you to include references to your filer based 
 images and files (attachments). It also allows you to easily maintain content 
 using a markup format such as ``Markdown``.
 
-It should be noted that in the ``contrib.Flatpage``
-model (content, titles) are not be affected by installing or removing this app.
-Additionally, your templates do not have to be changed as they will
+However, the ``contrib.Flatpage`` model (content, titles) 
+is not be affected by installing or removing this app.
+ Your templates do not have to be changed as they will
 still utilize the  ``{{ flatpage.content }}`` and ``{{ flatpage.title }}``
-context variables.  
-
-Once it is installed your content will be actually stored in a
-related  model ``flatpages_filer.models.Revisions`` usually in in a markup 
-format. The Revision model which also keeps track of
+context variables.  Once it is installed, content changes are actually 
+stored in a related  model ``flatpages_filer.models.Revisions`` usually 
+in a markup format. The Revision model which also keeps track of
 content changes making it easy to revert to an earlier versions.
-The modified ``Admin ChangeForm``  ensures you can view the latest 
+The modified ``Admin ChangeForm`` ensures you can view the latest 
 version of your content in the appropriate markup format and when 
 you save a ``flatpage`` this markup content  will be rendered to
 to html via a  specified parser. 
@@ -56,7 +55,7 @@ Contributors
 * `Christopher Clarke <https://github.com/chrisdev>`_
 * `Lendl R Smith <https://github.com/ilendl2>`_
 * `Mikhail Andreev <https://github.com/adw0rd>`_
-*  `Raumkraut https://github.com/Raumkraut`_
+* `Raumkraut https://github.com/Raumkraut`_
 
 Quickstart
 ===========
@@ -146,13 +145,14 @@ the following arguments::
 
 Migrating From Flatpages-x
 ---------------------------
-Before installing to flatpage_filer dump the data from to revision.json 
+Before installing to flatpage_filer dump the data from to revision.json ::
 
-python manage.py dumpdata flatpages_x.Revision
+    python manage.py dumpdata flatpages_x.Revision
 
-Then replace the name in model from flatpages_x.revision to flatpages_filer.revision
+Then replace the ``name`` field from ``flatpages_x.revision`` 
+to ``flatpages_filer.revision`` ::  
 
-python manage.py loaddata ~/usr/folder/revision.json
+    python manage.py loaddata ~/usr/folder/revision.json
 
 
 
