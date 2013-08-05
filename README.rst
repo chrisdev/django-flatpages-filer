@@ -32,7 +32,7 @@ to html via a  specified parser.
 Additionally, ``django-flatpages-filer``:
 
 - Comes with a default markdown parser which which supports the
-  ``codehilite`` and ``extras`` extensions but you can specify 
+  ``codehilite`` and ``extra`` extensions but you can specify 
   your own list of extensions in your Django settings
 
 - You can easily write your own parser to support to support formats such as
@@ -114,11 +114,11 @@ in your root URLconf.
 Parser
 -------
 Django-flatpages-filer come with a  parser that supports Markdown and
-supports  ``codehilite`` and ``extras``. You can 
+supports  ``codehilite`` and ``extra``. You can 
 specify more extensions by adding the following to you Django settings ::
 
     FLATPAGES_FILER_PARSER= ["flatpages_filer.markdown_parser.parse",
-                            {'extensions': ['codehilite','extras', 'abbr']}]
+                            {'extensions': ['codehilite','extra', 'abbr']}]
 
 
 You can supply your own parser by setting the value for 
