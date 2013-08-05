@@ -22,7 +22,7 @@ using a markup format such as ``Markdown``.
 
 However, the ``contrib.Flatpage`` model (content, titles) 
 is not be affected by installing or removing this app.
- Your templates do not have to be changed as they will
+Your templates do not have to be modified as they will
 still utilize the  ``{{ flatpage.content }}`` and ``{{ flatpage.title }}``
 context variables.  Once it is installed, content changes are actually 
 stored in a related  model ``flatpages_filer.models.Revisions`` usually 
@@ -55,7 +55,7 @@ Contributors
 * `Christopher Clarke <https://github.com/chrisdev>`_
 * `Lendl R Smith <https://github.com/ilendl2>`_
 * `Mikhail Andreev <https://github.com/adw0rd>`_
-* `Raumkraut https://github.com/Raumkraut`_
+* `Raumkraut <https://github.com/Raumkraut>`_
 
 Quickstart
 ===========
@@ -117,44 +117,43 @@ You need a few configuration steps
 in your root URLconf.
 
 
-Parser
--------
-Django-flatpages-filer come with a  parser that supports Markdown and
-supports  ``codehilite`` and ``extras``. You can 
-specify more extensions by adding the following to you Django settings ::
+Markup Parsers
+--------------
+Django-flatpages-filer includes a Markdown parser that
+supports  ``codehilite`` and ``extra`` extensions. You can 
+support additional extensions by first installing the extension
+an adding the following to you Django settings ::
 
     FLATPAGES_FILER_PARSER= ["flatpages_filer.markdown_parser.parse",
                             {'extensions': ['codehilite','extras', 'abbr']}]
 
 
-You can supply your own parser by setting the value for 
+You can also supply your own parser by setting the value for 
 ``FLATPAGES_FILER_PARSER`` to point to your parser ::
 
-    FLATPAGES_FILER_PARSER= ["flatpages_filer.creole_parser.parse",
+    FLATPAGES_FILER_PARSER= ["myapp.creole_parser.parse",
                             {'emitter': FilerEmmiter}]
 
-Note we expect that your parser would define a ``parse`` method with the 
-the following arguments::
+Note we expect that your ``parse`` would have the following signature ::
     
     parse(text, [extensions, emitters etc])
 
-
-
-.. end-here
-
-
 Migrating From Flatpages-x
 ---------------------------
-Before installing to flatpage_filer dump the data from to revision.json ::
+Before installing to ``django-flatpage-filer`` dump the data in the Revison
+model ::
 
-    python manage.py dumpdata flatpages_x.Revision
+    python manage.py dumpdata flatpages_x.Revision > revision.json
 
-Then replace the ``name`` field from ``flatpages_x.revision`` 
-to ``flatpages_filer.revision`` ::  
+Remove ``flatpage_x`` from you settings and install django-flatpages-filer and 
+add ``flatpages_filer`` to the settings. To import your revision data edit
+``revision.json`` and change all occurences of  ``flatpages_x.revision`` 
+to ``flatpages_filer.revision``. Finally, run ::  
 
     python manage.py loaddata ~/usr/folder/revision.json
 
 
+.. end-here
 
 Documentation
 --------------
