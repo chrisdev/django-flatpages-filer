@@ -2,6 +2,11 @@
 Django Flatpage Filer
 ======================
 
+.. image:: https://secure.travis-ci.org/chrisdev/django-flatpages-filer.png?branch=master
+   :target: http://travis-ci.org/chrisdev/django-flatpages-filer
+.. image:: https://coveralls.io/repos/chrisdev/django-flatpages-filer/badge.png?branch=master
+   :target: https://coveralls.io/r/chrisdev/django-flatpages-filer
+
 An extension to provide easy integration between ``django.contrib.flatpages`` 
 and  `Django-filer`_ 
 
@@ -10,9 +15,9 @@ and  `Django-filer`_
 
 ``django-flapages-filer`` aims to provide a seamless experience to users of the
 standard flatpages app. It enhances the standard flatpages Admin 
-with inline forms that allow you to include references to you filer images 
-and files (attachments). It also allows you to easily maintain content 
-using a markup format such as markdown.
+with inline forms that allow you to include references to your filer based 
+images and files (attachments). It also allows you to easily maintain content 
+using a markup format such as ``Markdown``.
 
 It should be noted that in the ``contrib.Flatpage``
 model (content, titles) are not be affected by installing or removing this app.
@@ -22,17 +27,17 @@ context variables.
 
 Once it is installed your content will be actually stored in a
 related  model ``flatpages_filer.models.Revisions`` usually in in a markup 
-format such as markdown. This Revision model which also keeps track of
-all content changes making it easy to revert to an earlier vision.
-Our modified ``Admin ChangeForm``  ensures you can view the latest 
+format. The Revision model which also keeps track of
+content changes making it easy to revert to an earlier versions.
+The modified ``Admin ChangeForm``  ensures you can view the latest 
 version of your content in the appropriate markup format and when 
 you save a ``flatpage`` this markup content  will be rendered to
 to html via a  specified parser. 
 
 Additionally, ``django-flatpages-filer``:
 
-- Comes with a default markdown parser which which supports the
-  ``codehilite`` and ``extras`` extensions but you can specify 
+- Comes with a default ``Markdown`` parser. By default the
+  ``codehilite`` and ``extra`` extensions are supported but you can specify 
   your own list of extensions in your Django settings
 
 - You can easily write your own parser to support to support formats such as
@@ -50,6 +55,8 @@ Contributors
 ============
 * `Christopher Clarke <https://github.com/chrisdev>`_
 * `Lendl R Smith <https://github.com/ilendl2>`_
+* `Mikhail Andreev <https://github.com/adw0rd>`_
+*  `Raumkraut https://github.com/Raumkraut`_
 
 Quickstart
 ===========
