@@ -39,8 +39,8 @@ Additionally, ``django-flatpages-filer``:
   ``codehilite`` and ``extra`` extensions are supported but you can specify 
   your own list of extensions in your Django settings
 
-- You can easily write your own parser to support to support formats such as
-  rst or creole.
+- You can easily write your own parser to support to support markup 
+  formats such as rst or creole.
 
 - Provides optional support for the excellent **markItUp**  widget. 
   This requires the installation ``django-markitup``.
@@ -116,7 +116,6 @@ You need a few configuration steps
 
 in your root URLconf.
 
-
 Markup Parsers
 --------------
 Django-flatpages-filer includes a Markdown parser that
@@ -125,18 +124,18 @@ support additional extensions by first installing the extension
 an adding the following to you Django settings ::
 
     FLATPAGES_FILER_PARSER= ["flatpages_filer.markdown_parser.parse",
-                            {'extensions': ['codehilite','extras', 'abbr']}]
+                            {'extensions': ['codehilite','extra', 'abbr']}]
 
 
 You can also supply your own parser by setting the value for 
 ``FLATPAGES_FILER_PARSER`` to point to your parser ::
 
-    FLATPAGES_FILER_PARSER= ["myapp.creole_parser.parse",
+    FLATPAGES_FILER_PARSER= ["myproject.myapp.creole_parser.parse",
                             {'emitter': FilerEmmiter}]
 
 Note we expect that your ``parse`` would have the following signature ::
     
-    parse(text, [extensions, emitters etc])
+    parse(text, [list of `extensions, emitters etc.])
 
 Migrating From Flatpages-x
 ---------------------------

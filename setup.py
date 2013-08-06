@@ -14,7 +14,7 @@ DESCRIPTION = "Some Basic extensions for django-contrib-flatpages"
 AUTHOR = "Chris Clarke", "Lendl Smith"
 AUTHOR_EMAIL = "cclarke@chrisdev.com"
 URL = "http://github.com/chrisdev/django-flatpages-filer"
-VERSION = __import__(PACKAGE).__version__
+VERSION = '0.0.2'
 
 
 setup(
@@ -35,6 +35,8 @@ setup(
         "License :: OSI Approved :: BSD License",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
+        'Programming Language :: Python :: 2.6',
+        'Programming Language :: Python :: 2.7',
         "Framework :: Django",
     ],
     zip_safe=False,
