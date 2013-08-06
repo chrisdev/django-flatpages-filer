@@ -14,7 +14,7 @@ DESCRIPTION = "Some Basic extensions for django-contrib-flatpages"
 AUTHOR = "Chris Clarke", "Lendl Smith"
 AUTHOR_EMAIL = "cclarke@chrisdev.com"
 URL = "http://github.com/chrisdev/django-flatpages-filer"
-VERSION = '0.0.2'
+VERSION = __import__(PACKAGE).__version__
 
 
 setup(
