@@ -31,8 +31,8 @@ class FlatPageImage(models.Model):
     image = FilerImageField(null=True, blank=True)
 
     def __unicode__(self):
-
-        return "![%s][%s]" % (self.image.label, self.image.pk)
+        if self.image:
+            return "![%s][%s]" % (self.image.label, self.image.pk)
 
     class Meta:
         verbose_name = "Image"
@@ -47,8 +47,8 @@ class FlatPageAttachment(models.Model):
     attachment = FilerFileField(null=True, blank=True)
 
     def __unicode__(self):
-
-        return "[%s] [%s]" % (self.attachment.label, self.attachment.pk)
+        if self.attachment:
+            return "[%s] [%s]" % (self.attachment.label, self.attachment.pk)
 
     class Meta:
         verbose_name = "Attachment"
