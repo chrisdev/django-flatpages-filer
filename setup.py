@@ -48,7 +48,7 @@ setup(
                    "django-filer>=0.9.5",
                    "easy-thumbnails==1.3",
                    "Markdown==2.3.1",
-                   "Pillow==6.2.0",
+                   "Pillow==8.1.1",
                    ],
     test_suite="runtests.runtests"
 )
